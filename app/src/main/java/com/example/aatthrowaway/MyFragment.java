@@ -3,14 +3,13 @@ package com.example.aatthrowaway;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.intentsoftware.addapptr.AATKit;
+public class MyFragment extends Fragment implements BannerCallback {
 
-public class MyFragment extends Fragment {
+    ViewGroup bannerContainer;
 
     @Nullable
     @Override
@@ -21,6 +20,8 @@ public class MyFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment, null);
 
+        bannerContainer = (ViewGroup) view.findViewById(R.id.container);
+
         loadBanner();
 
         return view;
@@ -28,8 +29,13 @@ public class MyFragment extends Fragment {
 
     void loadBanner() {
         App app = (App) getActivity().getApplicationContext();
-        int placementId = app.placementId;
-        Log.d("yyy", "reloadPlacement" + placementId);
-        AATKit.reloadPlacement(app.placementId);
+        app.requestBanner(this);
+    }
+
+    @Override
+    public void bannerReceived(final View bannerView) {
+
+        bannerContainer.removeAllViews();
+        bannerContainer.addView(bannerView);
     }
 }
