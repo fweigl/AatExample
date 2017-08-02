@@ -9,12 +9,14 @@ import com.intentsoftware.addapptr.AATKit;
 
 public class MainActivity extends AppCompatActivity {
 
+    App app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        App app = (App) getApplicationContext();
+        app = (App) getApplicationContext();
         final ViewGroup container = (ViewGroup) findViewById(R.id.container);
 
         app.requestBanner(new BannerCallback() {
@@ -37,5 +39,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         AATKit.onActivityResume(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        app.cancelCallback();
     }
 }

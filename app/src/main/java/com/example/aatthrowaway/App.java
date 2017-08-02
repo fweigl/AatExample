@@ -9,8 +9,8 @@ import com.intentsoftware.addapptr.PlacementSize;
 
 public class App extends Application implements AATKit.Delegate {
 
-    int placementId = -1;
-    BannerCallback callback;
+    private int placementId = -1;
+    private BannerCallback callback;
 
     @Override
     public void onCreate() {
@@ -23,6 +23,10 @@ public class App extends Application implements AATKit.Delegate {
         this.callback = callback;
         Log.d("yyy", "requesting banner");
         AATKit.reloadPlacement(placementId);
+    }
+
+    public void cancelCallback() {
+        callback = null;
     }
 
     @Override
