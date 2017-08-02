@@ -9,10 +9,10 @@
     android:orientation="vertical"
     tools:context="com.example.aatthrowaway.MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>

@@ -1,8 +1,9 @@
 package com.example.aatthrowaway;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.intentsoftware.addapptr.AATKit;
 
@@ -13,11 +14,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.vp);
-        viewPager.setOffscreenPageLimit(10);
-        MyAdapter adapter = new MyAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(adapter);
+        App app = (App) getApplicationContext();
+        final ViewGroup container = (ViewGroup) findViewById(R.id.container);
 
+        app.requestBanner(new BannerCallback() {
+            @Override
+            public void bannerReceived(final View bannerView) {
+                container.addView(bannerView);
+            }
+        });
     }
 
     @Override

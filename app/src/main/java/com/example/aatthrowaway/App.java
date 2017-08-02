@@ -7,12 +7,10 @@ import com.intentsoftware.addapptr.AATKit;
 import com.intentsoftware.addapptr.BannerPlacementLayout;
 import com.intentsoftware.addapptr.PlacementSize;
 
-import java.util.ArrayList;
-
 public class App extends Application implements AATKit.Delegate {
 
     int placementId = -1;
-    ArrayList<BannerCallback> callbacks = new ArrayList<>();
+    BannerCallback callback;
 
     @Override
     public void onCreate() {
@@ -22,7 +20,7 @@ public class App extends Application implements AATKit.Delegate {
     }
 
     public void requestBanner(BannerCallback callback) {
-        callbacks.add(callback);
+        this.callback = callback;
         Log.d("yyy", "requesting banner");
         AATKit.reloadPlacement(placementId);
     }
@@ -73,9 +71,9 @@ public class App extends Application implements AATKit.Delegate {
 
         Log.d("yyy", "aatkitHaveAdForPlacementWithBannerView " + i);
 
-        if (callbacks.size() > 0) {
-            callbacks.get(0).bannerReceived(bannerPlacementLayout);
-            callbacks.remove(0);
+        if (callback != null) {
+            callback.bannerReceived(bannerPlacementLayout);
+            callback = null;
         }
     }
 }
