@@ -12,6 +12,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -31,12 +35,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    compile 'com.appnexus.opensdk:appnexus-sdk:3.4'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile (name:'AATKit-release', ext:'aar')
-    compile (name:'Millennial-release', ext:'aar')
+    compile (name:'Millennial', ext:'aar')
     compile (name:'Permodo-release', ext:'aar')
-    compile (name:'unity-ads-release', ext:'aar')
+    compile (name:'UnityAds', ext:'aar')
     compile (name:'VideoAdSDK-release', ext:'aar')
 
     // For banners
