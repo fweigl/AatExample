@@ -2,14 +2,16 @@ package com.example.aatthrowaway;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import com.intentsoftware.addapptr.AATKit;
+import com.intentsoftware.addapptr.BannerPlacementLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     App app;
+    BannerPlacementLayout banner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         app.requestBanner(new BannerCallback() {
             @Override
-            public void bannerReceived(final View bannerView) {
+            public void bannerReceived(final BannerPlacementLayout bannerView) {
+                banner = bannerView;
                 container.addView(bannerView);
             }
         });
@@ -46,5 +49,15 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
         app.cancelCallback();
+
+        if (banner != null) {
+
+            banner.destroy();
+
+            ViewParent parent = banner.getParent();
+            if (parent != null && parent instanceof ViewGroup) {
+                ((ViewGroup) parent).removeView(banner);
+            }
+        }
     }
 }

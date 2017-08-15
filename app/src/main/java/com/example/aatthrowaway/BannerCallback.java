@@ -1,7 +1,7 @@
 package com.example.aatthrowaway;
 
-import android.view.View;
+import com.intentsoftware.addapptr.BannerPlacementLayout;
 
 public interface BannerCallback {
-    void bannerReceived(View bannerView);
+    void bannerReceived(BannerPlacementLayout bannerView);
 }

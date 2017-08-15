@@ -21,8 +21,7 @@ public class App extends Application implements AATKit.Delegate {
 
     public void requestBanner(BannerCallback callback) {
         this.callback = callback;
-        Log.d("yyy", "requesting banner");
-        AATKit.reloadPlacement(placementId);
+        AATKit.reloadPlacement(placementId, true);
     }
 
     public void cancelCallback() {
