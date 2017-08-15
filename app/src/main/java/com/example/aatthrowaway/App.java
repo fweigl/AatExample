@@ -10,27 +10,24 @@ import com.intentsoftware.addapptr.PlacementSize;
 public class App extends Application implements AATKit.Delegate {
 
     private int placementId = -1;
-    private BannerCallback callback;
 
     @Override
     public void onCreate() {
         super.onCreate();
         AATKit.init(this, this);
-        placementId = AATKit.createPlacement("test", PlacementSize.MultiSizeBanner);
+        placementId = AATKit.createPlacement("test", PlacementSize.Fullscreen);
     }
 
-    public void requestBanner(BannerCallback callback) {
-        this.callback = callback;
-        AATKit.reloadPlacement(placementId, true);
-    }
-
-    public void cancelCallback() {
-        callback = null;
+    public void requestInterstitial() {
+        boolean reloaded = AATKit.reloadPlacement(placementId, true);
+        boolean shown = AATKit.showPlacement(placementId);
+        Log.d("yyy", "reloaded? " + reloaded + " shown? " + shown);
     }
 
     @Override
     public void aatkitHaveAd(final int i) {
-
+        Log.d("yyy", "aatkitHaveAd " + i);
+        AATKit.showPlacement(placementId);
     }
 
     @Override
@@ -72,11 +69,5 @@ public class App extends Application implements AATKit.Delegate {
     public void aatkitHaveAdForPlacementWithBannerView(
             final int i, final BannerPlacementLayout bannerPlacementLayout) {
 
-        Log.d("yyy", "aatkitHaveAdForPlacementWithBannerView " + i);
-
-        if (callback != null) {
-            callback.bannerReceived(bannerPlacementLayout);
-            callback = null;
-        }
     }
 }
