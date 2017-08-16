@@ -45,35 +45,18 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile (name:'AATKit-release', ext:'aar')
-    compile (name:'Millennial-release', ext:'aar')
-    compile (name:'Permodo-release', ext:'aar')
-    compile (name:'unity-ads-release', ext:'aar')
-    compile (name:'VideoAdSDK-release', ext:'aar')
-
-    // For banners
-    compile('com.mopub:mopub-sdk-banner:4.11.0@aar') {
-        transitive = true
-    }
-
-    // For interstitials
-    compile('com.mopub:mopub-sdk-interstitial:4.11.0@aar') {
-        transitive = true
-    }
-
-    // For native ads
-    compile('com.mopub:mopub-sdk-native-static:4.11.0@aar') {
-        transitive = true
-    }
-
-    // For rewarded videos. This will automatically also include interstitials
-    compile('com.mopub:mopub-sdk-rewardedvideo:4.11.0@aar') {
-        transitive = true
-    }
-
-    compile 'com.google.code.gson:gson:2.7' //used by Permodo
-    compile 'com.squareup.okhttp3:okhttp:3.4.1' //used by SmartStream.tv and Permodo
     compile 'com.google.android.gms:play-services:11.0.2'
 
+    compile ('com.intentsoftware.addapptr:AATKit:2.20.9') {
+        transitive = true
+        exclude group: 'com.intentsoftware.addapptr.subsdk', module:'Smaato'
+        exclude group: 'com.intentsoftware.addapptr.subsdk', module:'Millennial'
+        exclude group: 'com.intentsoftware.addapptr.subsdk', module:'SmartStreamTV'
+        exclude group: 'com.intentsoftware.addapptr.subsdk', module:'AdColony'
+        exclude group: 'com.intentsoftware.addapptr.subsdk', module:'LoopMe'
+        exclude group: 'com.intentsoftware.addapptr.subsdk', module:'PubMatic'
+        exclude group: 'com.intentsoftware.addapptr.subsdk', module:'RevMob'
+        exclude group: 'com.flurry.android', module:'ads'
+    }
     testCompile 'junit:junit:4.12'
 }

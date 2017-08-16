@@ -21,6 +21,9 @@ allprojects {
         flatDir {
             dirs '../libs'
         }
+        maven {
+            url 'http://android-sdk.aatkit.com/maven/'
+        }
     }
 }
 

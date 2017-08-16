@@ -23,3 +23,16 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontskipnonpubliclibraryclassmembers
+-dontpreverify
+-keepattributes SourceFile,LineNumberTable,*Annotation*,EnclosingMethod,Signature,JavascriptInterface
+
+-dontwarn com.intentsoftware.addapptr.banners.**
+-dontwarn com.intentsoftware.addapptr.fullscreens.**
+-dontwarn com.intentsoftware.addapptr.nativeads.**
+
+-dontwarn com.smartadserver.**
+-dontwarn com.flurry.android.FlurryFullscreenTakeoverActivity
